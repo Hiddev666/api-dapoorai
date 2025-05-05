@@ -1,8 +1,9 @@
 {
   "name": "api-dapoorai",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/server.mjs",
   "scripts": {
+    "dev": "nodemon src/server.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -19,5 +20,6 @@
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
     "prisma": "^6.7.0"
-  }
+  },
+  "type": "module"
 }
