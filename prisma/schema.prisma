@@ -12,3 +12,14 @@ model Test {
     name String
     @@map("test")
 }
+
+model User {
+    id String @id @default(uuid())
+    googleId String @unique
+    name String
+    email String @unique
+    profile_picture String
+    created_at DateTime @default(now())
+
+    @@map("users")
+}

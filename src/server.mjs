@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import db from "./lib/db.mjs"
 import router from "./routes/router.mjs"
+import cors from "cors"
 
 dotenv.config()
 
@@ -12,6 +13,9 @@ const PORT = process.env.SERVER_PORT
 // Middelwares
 app.use(express.json())
 app.use(router)
+app.use(cors({
+    origin: "*"
+}))
 
 app.get("/", (req, res) => {
     res.send({
@@ -47,6 +51,6 @@ app.post("/test", async (req, res) => {
     }
 })
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log("[SERVER] Running On Port ", PORT)
 })
