@@ -18,6 +18,7 @@ app.use(cors({
 }))
 
 app.get("/", (req, res) => {
+    console.log(req.isAuthenticated(), req.user)
     res.send({
         message: "dapoorAI REST API | Build with love by Hiddev"
     })
