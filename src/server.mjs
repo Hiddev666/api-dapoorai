@@ -12,10 +12,11 @@ const PORT = process.env.SERVER_PORT
 
 // Middelwares
 app.use(express.json())
-app.use(router)
 app.use(cors({
-    origin: "*"
-}))
+    origin: 'http://localhost:5173',
+    credentials: true // ⬅️ Penting kalau kamu pakai cookie/session
+}));
+app.use(router)
 
 app.get("/", (req, res) => {
     console.log(req.isAuthenticated(), req.user)

@@ -2,6 +2,7 @@ import { Router } from "express";
 import passport from "./passport.mjs";
 
 const authRouter = Router()
+const FRONTEND_BASE_URL = process.env.FRONTEND_BASE_URL
 
 authRouter.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }))
 
@@ -13,10 +14,10 @@ authRouter.get(
     }),
     (req, res) => {
         // redirect to frontend with user info or token
-        res.redirect(`http://localhost:5173/user`);
+        res.redirect(`${FRONTEND_BASE_URL}/user`);
+        // res.redirect(`/user`);
     }
 );
-
 
 authRouter.get("/failure", (req, res) => {
     res.send({ message: "Auth Failed" })
@@ -30,7 +31,7 @@ authRouter.get("/profile", (req, res) => {
 
 authRouter.get("/logout", (req, res) => {
     req.logout(() => {
-        res.redirect("/")
+        res.redirect(`${FRONTEND_BASE_URL}/auth/login`)
     })
 })
 
