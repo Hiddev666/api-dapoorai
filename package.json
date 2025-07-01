@@ -4,7 +4,9 @@
   "main": "src/server.mjs",
   "scripts": {
     "dev": "nodemon src/server.mjs",
-    "sync": "npx prisma db push && npx prisma generate",
+    "build": "prisma generate",
+    "postinstall": "prisma generate",
+    "start": "node src/server.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,6 +17,7 @@
     "@google/generative-ai": "^0.24.1",
     "@prisma/client": "^6.7.0",
     "cors": "^2.8.5",
+    "dateformat": "^5.0.3",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-session": "^1.18.1",
@@ -22,6 +25,9 @@
     "passport": "^0.7.0",
     "passport-google-oauth20": "^2.0.0",
     "prisma": "^6.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   },
   "type": "module"
 }

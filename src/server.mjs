@@ -10,11 +10,11 @@ dotenv.config()
 const app = express()
 const PORT = process.env.SERVER_PORT
 
-// Middelwares
+// Middlewares
 app.use(express.json())
 app.use(cors({
-    origin: 'http://localhost:5173',
-    credentials: true // ⬅️ Penting kalau kamu pakai cookie/session
+    origin: process.env.CORS_ORIGIN,
+    credentials: true
 }));
 app.use(router)
 
@@ -53,6 +53,6 @@ app.post("/test", async (req, res) => {
     }
 })
 
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, () => {
     console.log("[SERVER] Running On Port ", PORT)
 })
