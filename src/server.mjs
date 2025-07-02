@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import db from "./lib/db.mjs"
 import router from "./routes/router.mjs"
 import cors from "cors"
+import session from "express-session";
 
 dotenv.config()
 
@@ -13,9 +14,18 @@ const PORT = process.env.SERVER_PORT
 // Middlewares
 app.use(express.json())
 app.use(cors({
-    origin: "https://dapoorai.vercel.app",
+    origin: 'https://dapoorai.vercel.app', // HARUS SPESIFIK, bukan '*'
     credentials: true
-}));
+}))
+router.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        sameSite: 'none', // WAJIB
+        secure: true      // WAJIB (HARUS HTTPS)
+    }
+}))
 app.use(router)
 
 app.get("/", (req, res) => {
