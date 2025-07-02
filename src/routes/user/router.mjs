@@ -7,6 +7,8 @@ const userRouter = Router()
 
 userRouter.get("/", (req, res) => {
     try {
+        if (!req.user) return res.send({ message: "Unautenticated" })
+
         res.send({
             message: "Authenticated",
             data: req.user
