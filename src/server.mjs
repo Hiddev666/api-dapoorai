@@ -17,15 +17,6 @@ app.use(cors({
     origin: 'https://dapoorai.vercel.app', // HARUS SPESIFIK, bukan '*'
     credentials: true
 }))
-router.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        sameSite: 'none', // WAJIB
-        secure: true      // WAJIB (HARUS HTTPS)
-    }
-}))
 app.use(router)
 
 app.get("/", (req, res) => {
