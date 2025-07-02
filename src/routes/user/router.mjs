@@ -6,13 +6,14 @@ import db from "../../lib/db.mjs"
 const userRouter = Router()
 
 userRouter.get("/", (req, res) => {
-
-    if (!req.user) return res.send({ message: "Unautenticated" })
-
-    res.send({
-        message: "Authenticated",
-        data: req.user
-    })
+    try {
+        res.send({
+            message: "Authenticated",
+            data: req.user
+        })
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 userRouter.post("/generate", async (req, res) => {
