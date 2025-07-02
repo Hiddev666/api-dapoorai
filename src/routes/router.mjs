@@ -9,7 +9,11 @@ const router = Router()
 router.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: false,
+    cookie: {
+        sameSite: 'none', // WAJIB
+        secure: true      // WAJIB (HARUS HTTPS)
+    }
 }))
 
 router.use(passport.initialize())

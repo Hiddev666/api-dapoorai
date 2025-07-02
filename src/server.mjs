@@ -13,7 +13,7 @@ const PORT = process.env.SERVER_PORT
 // Middlewares
 app.use(express.json())
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: "https://dapoorai.vercel.app",
     credentials: true
 }));
 app.use(router)
