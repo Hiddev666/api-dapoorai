@@ -9,7 +9,13 @@ const router = Router()
 router.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        secure: true,        // harus true kalo pakai https
+        sameSite: 'None',    // harus None kalo cross-origin
+        maxAge: 1000 * 60 * 60 * 24 // 1 hari
+    }
 }))
 
 router.use(passport.initialize())
